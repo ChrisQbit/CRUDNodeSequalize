@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <style>
+  #app{
+      background-color:#CFD8DC;      
+  }
+  .masthead {
+  height: 100vh;
+  min-height: 500px;
+  background-image: url('https://source.unsplash.com/BtbjCFUvBXs/1920x1080');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+  </style>
+</head>
+<body>
+    
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light shadow fixed-top" style="background-color: #1b4f8c;">
+  <div class="container">
+    <a class="navbar-brand" href="#" style="color:#fff;">
+      <img src="https://www.mueblesamerica.mx/assets/muebles-america-logo.png"/>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/home"  style="color:#fff;">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/perfil"  style="color:#fff;">Perfil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/productos"  style="color:#fff;">Productos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/close"  style="color:#fff;">Cerrar</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<!-- Page Content -->
+<section class="py-5" style="margin-top: 50px;">
+  <div class="container">
+    <h1 class="fw-light">CRUD con Express js, Boostrap , JQuery, Node JS y Sequelize</h1>
+        <p class="lead" id="nameFall">Vista posterior al login ... [Home con token Auth]</p>
+
+        <!-- Button trigger modal -->
+<button type="button" class="btn btn-success btn-lg" onclick="createBtn()" data-toggle="modal" data-target="#exampleModal">
+  Crear nuevo + 
+</button>
+
+
+    <table class="table table-hover">
+      <thead style="background-color: #b12e2d;">
+        <tr>
+          <th scope="col" style="color:#fff;">Id</th>
+          <th scope="col" style="color:#fff;">Name</th>
+          <th scope="col" style="color:#fff;">Detail</th>
+          <th scope="col" style="color:#fff;">Price</th>
+          <th scope="col" style="color:#fff;">Accion</th>
+        </tr>
+      </thead>
+      <tbody id="table1">
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<p id="containerAjax1">
+
+</p>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Crear Nuevo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+          <div class="form-group">
+            <label for="exampleInputEmail1">Nombre</label>
+            <input type="email" class="form-control"
+             id="nameP" aria-describedby="emailHelp" placeholder="nombre"/>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Detalle</label>
+            <textarea type="text" class="form-control" id="detailP" placeholder="detalle">
+              </textarea>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Precio</label>
+            <input type="number" class="form-control" id="priceP" placeholder="precio">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Imagen</label>
+            <input type="text" class="form-control" id="imageP" placeholder="Imagen">
+          </div>
+          
+          <button class="btn btn-success" onclick="makeCreate()" data-dismiss="modal">Guardar +</button>
+       
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar (X)</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="" style="background-color: #1b4f8c; color:#fff;">
+  <div class="container" style="background-color: #1b4f8c; color:#fff;"></div>
+  <footer class="row row-cols-5 py-5 my-5 border-top">
+    <div class="col">
+      <a href="/" class="d-flex align-items-center mb-3 link-dark text-decoration-none">
+        <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+      </a>
+      <p class="text-muted">&copy; 2021</p>
+    </div>
+
+    <div class="col">
+
+    </div>
+
+    <div class="col">
+      <h5>Section</h5>
+      <ul class="nav flex-column">
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
+      </ul>
+    </div>
+
+    <div class="col">
+      <h5>Section</h5>
+      <ul class="nav flex-column">
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
+      </ul>
+    </div>
+
+    <div class="col">
+      <h5>Section</h5>
+      <ul class="nav flex-column">
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Features</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Pricing</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
+        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
+      </ul>
+    </div>
+  </footer>
+</div>
+</div>
+</body>
+</html> 
+
+<script>
+  var name = localStorage['name'] || 'defaultValue';
+  var email = localStorage['email'] || 'defaultValue';
+  var password = localStorage['password'] || 'defaultValue';
+  var remember_token = localStorage['remember_token'] || 'defaultValue';
+  $("#nameFall").text("Bienvenido de nuevo: " + name + email);
+  $.post('http://127.0.0.1:3000/products', {"token": remember_token,"email" : email, "password": password}, function(respuesta){ 
+      $( "#containerAjax1" ).append( respuesta );
+      var obj = respuesta;
+        $.each( obj, function( key, value ) {
+          $( "#table1" ).append( '  <tr id="row'+value.id+'">  <th scope="row" id="ele'+value.id+'">'+value.id+'</th><td id="nameOf'+value.id
+            +'">'+value.name+'</td> <td id="detailOf'+value.id
+            +'">'+value.detail+
+                      '</td> <td id="priceOf'+value.id
+            +'">'+value.price+
+                        '</td> <td><button type="button" class="btn btn-danger btn-sm" onclick="deleteR(\''+
+                          value.id+'\')">Borrar [X]</button>'+
+                          '<button type="button" class="btn btn-info btn-sm" onclick="editR(\''+
+                          value.id+'\')" data-toggle="modal" data-target="#exampleModal">Editar</button>'+
+                        '</td> </tr> ');
+        });
+        });
+
+
+
+function deleteR(ide){  
+  $.post('http://127.0.0.1:3000/delete', {"token": remember_token,"email" : email, "id": ide}, function(respuesta){ 
+      alert(respuesta);
+        $( "#row"+ide ).remove();
+});
+}
+function editR(ide){
+  ideo = ide;
+  typeOp = 2;
+  $("#exampleModalLabel").text("Editar producto");
+  var name = $("#nameOf"+ide).text();
+  $("#nameP").val(name);
+  var detail = $("#detailOf"+ide).text();
+  $("#detailP").val(detail);
+  var price = $("#priceOf"+ide).text();
+  $("#priceP").val(price);
+  var image = $("#imageOf"+ide).text();
+  $("#imageP").val(image);
+  
+}
+
+function makeCreate(){
+    var name = $("#nameP").val();
+    var detail = $("#detailP").val();
+    var price = $("#priceP").val();
+    var image = $("#imageP").val();
+    if(typeOp == '1'){
+        // aqui el create api
+        $.post('http://127.0.0.1:3000/create', {"token": remember_token,"email" : email,
+        "name": name,"detail":detail,"price":price, "image":image}, function(value){ 
+                $( "#table1" ).append( '  <tr id="row'+value.id+'">  <th scope="row" id="ele'+value.id+'">'+value.id+'</th><td id="nameOf'+value.id
+            +'">'+value.name+'</td> <td id="detailOf'+value.id
+            +'">'+value.detail+
+                      '</td> <td id="priceOf'+value.id
+            +'">'+value.price+
+                        '</td> <td><button type="button" class="btn btn-danger btn-sm" onclick="deleteR(\''+
+                          value.id+'\')">Borrar [X]</button>'+
+                          '<button type="button" class="btn btn-info btn-sm" onclick="editR(\''+
+                          value.id+'\')" data-toggle="modal" data-target="#exampleModal">Editar</button>'+
+                        '</td> </tr> ');
+                        alert("prdoucto creado")
+                       
+        });
+    }
+    if(typeOp == '2'){
+      // aqui el update api
+      $( "#row"+ideo).remove();
+      $.post('http://127.0.0.1:3000/edit', {"token": remember_token,"email" : email,
+        "name": name,"detail":detail,"price":price, "image":image, "id":ideo}, function(value){ 
+                $( "#table1" ).append( '  <tr id="row'+ideo+'">  <td scope="row" id="ele'+ideo+'">'+ideo+'</td><td id="nameOf'+ideo
+            +'">'+name+'</td> <td id="detailOf'+ideo
+            +'">'+detail+
+                      '</td> <td id="priceOf'+ideo
+            +'">'+price+
+                        '</td> <td><button type="button" class="btn btn-danger btn-sm" onclick="deleteR(\''+
+                          ideo+'\')">Borrar [X]</button>'+
+                          '<button type="button" class="btn btn-info btn-sm" onclick="editR(\''+
+                          ideo+'\')" data-toggle="modal" data-target="#exampleModal">Editar</button>'+
+                        '</td> </tr> ');
+                        alert("prdoucto editado")
+        });
+    }
+
+}
+
+var typeOp = 1;
+var ideo = 0;
+
+function createBtn(){
+  typeOp = 1;
+  $("#exampleModalLabel").text("Crear producto");
+    $("#nameP").val('');
+      $("#detailP").val('');
+      $("#priceP").val('');
+      $("#imageP").val('');
+}
+</script>

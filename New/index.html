@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <style>
+  #app{
+      background-color:#CFD8DC;      
+  }
+
+  .login {
+  min-height: 100vh;
+}
+
+.bg-image {
+  background-image: url('https://checkout.mueblesamerica.mx/media/wysiwyg/MA_2023_HMSLD_COLCHON_ZATE_WEB_1.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.login-heading {
+  font-weight: 300;
+}
+
+.btn-login {
+  font-size: 0.9rem;
+  letter-spacing: 0.05rem;
+  padding: 0.75rem 1rem;
+}
+  </style>
+</head>
+<body>
+    <div class="container-fluid ps-md-0">
+        <div class="row g-0">
+          <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
+          <div class="col-md-8 col-lg-6">
+            <div class="login d-flex align-items-center py-5">
+              <div class="container">
+                <div class="row">
+                  <div class="col-md-9 col-lg-8 mx-auto">
+                    <h3 class="login-heading mb-4">Logeo Muebles America</h3>
+      
+                    <!-- Sign In Form -->
+                    
+                      <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="mail" 
+                        name="email"
+                        placeholder="name@example.com">
+                        <label for="floatingInput">Email address</label>
+                      </div>
+                      <div class="form-floating mb-3">
+                        <input type="password" class="form-control" id="pass"
+                        name="password" placeholder="Password">
+                        <label for="floatingPassword">Password</label>
+                      </div>
+      
+                      <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" value="" id="rememberPasswordCheck">
+                        <label class="form-check-label" for="rememberPasswordCheck">
+                          Remember password
+                        </label>
+                      </div>
+      
+                      <div class="d-grid">
+                        <button class="btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2" 
+                        onclick="makeLogin()">
+                      Acceder</button>
+                        <div class="text-center">
+                          <a class="small" href="/register_form">Registrate Aqui</a>
+                        </div>
+                      </div>
+
+</body>
+</html> 
+<script>
+function makeLogin(){
+  var user = $("#mail").val();
+  var password = $("#pass").val();
+  calling(user,password)
+}
+
+
+function calling(us,pass){
+ 
+  $.post('http://127.0.0.1:3000/login', {"email" : us, "password": pass}, function(respuesta){ 
+      localStorage['id'] = respuesta.id;
+      localStorage['name'] = respuesta.name;
+      localStorage['email'] = respuesta.email;
+      localStorage['password'] = respuesta.password;
+      localStorage['remember_token'] = respuesta.remember_token;
+      window.location.replace("http://127.0.0.1:3000/home");
+});
+
+
+
+ 
+}
+</script>
